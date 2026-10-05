@@ -1,0 +1,593 @@
+@import "tailwindcss";
+
+/* ============================================================
+   GLOWSUITE DESIGN SYSTEM — globals.css
+   Tailwind v4 @theme block + semantic CSS custom properties.
+   ============================================================ */
+
+/* ---- 0. FONT DECLARATIONS --------------------------------- */
+@font-face {
+  font-family: 'tt-commons-pro-subset';
+  src: local('TT Commons Pro Subset'), local('TT Commons Pro'), local('TTCommonsPro-Regular');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'tt-commons-pro-subset';
+  src: local('TT Commons Pro Subset Medium'), local('TT Commons Pro Medium'), local('TTCommonsPro-Medium');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'tt-commons-pro-subset';
+  src: local('TT Commons Pro Subset DemiBold'), local('TT Commons Pro DemiBold'), local('TTCommonsPro-DemiBold');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'tt-commons-mono-md';
+  src: local('TT Commons Mono Medium'), local('TT Commons Mono'), local('TTCommonsMono-Medium');
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- 1. BRAND RAW PALETTE --------------------------------- */
+:root {
+  /* Font Family Tokens — Exact Approved Fonts */
+  --font-primary: 'tt-commons-pro-subset', var(--font-jakarta), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:    'tt-commons-mono-md', var(--font-mono-label), ui-monospace, monospace;
+
+  /* Core brand accent palette — EXACT APPROVED VALUES */
+  --gs-pink:    #BC269B;   /* Approved primary button/accent color */
+  --gs-purple:  #8B3FD8;
+  --gs-blue:    #0751FA;
+
+  /* Button Tokens */
+  --button-primary:           #BC269B;
+  --button-primary-text:      #FFFFFF;
+  --button-secondary-bg:      #FFFFFF;
+  --button-secondary-text:    #BC269B;
+  --button-secondary-border:  #BC269B;
+
+  /* Brand gradient — the exact approved 9-stop horizontal gradient */
+  --gs-gradient-hero: linear-gradient(
+    90deg,
+    #D5D4FB 0%,
+    #DCCAF8 12.5%,
+    #E5CAF2 25%,
+    #F0CCEB 37.5%,
+    #F9CEE5 50%,
+    #FCD2DF 62.5%,
+    #FCD7DA 75%,
+    #FCD7DA 87.5%,
+    #FDDED2 100%
+  );
+  /* UI gradient for accents (tabs, decorative) — still purple→blue range */
+  --gs-gradient: linear-gradient(135deg, #BC269B 0%, #8B3FD8 50%, #0751FA 100%);
+  --gs-gradient-subtle: linear-gradient(135deg, rgba(188,38,155,0.12) 0%, rgba(139,63,216,0.10) 50%, rgba(7,81,250,0.12) 100%);
+
+  /* ---- Semantic Background Tokens ---- */
+  --bg-page:      #FFFFFF;    /* Clean white main background */
+  --bg-elevated:  #FFFFFF;    /* White cards, modals */
+  --bg-subtle:    #FBF0F9;    /* Very subtle pink tint for hover/alternates */
+  --bg-dark:      #0F0F14;    /* Dark sections, footer */
+
+  /* Brand-tinted section backgrounds */
+  --bg-brand-tint: linear-gradient(135deg, rgba(213,212,251,0.18) 0%, rgba(220,202,248,0.18) 50%, rgba(255,255,255,1) 100%);
+  --bg-cta:        linear-gradient(135deg, rgba(188,38,155,0.03) 0%, rgba(139,63,216,0.02) 50%, rgba(255,255,255,1) 100%);
+
+  /* ---- Semantic Text Tokens — EXACT APPROVED VALUES ---- */
+  --text-primary:   #191E49;  /* APPROVED: exact primary text color */
+  --text-secondary: #4B5070;  /* Softer indigo family for body copy */
+  --text-muted:     #777C98;  /* Captions, labels */
+  --text-inverse:   #FFFFFF;  /* Text on dark backgrounds */
+
+  /* ---- UI Control Tokens ---- */
+  --border:        rgba(25, 30, 73, 0.08);   /* Standard border, navy-tinted */
+  --border-subtle: rgba(25, 30, 73, 0.05);   /* Very light dividers */
+  --focus:         #BC269B;                  /* Focus ring = approved primary */
+  --color-success: #166534;
+  --color-error:   #B91C1C;
+
+  /* ---- Radius Tokens ---- */
+  --radius-sm:      8px;
+  --radius-md:      12px;
+  --radius-lg:      24px;
+  --radius-product: 28px;
+
+  /* ---- Shadow Tokens ---- */
+  --shadow-sm:    0 2px 8px rgba(25,30,73,0.04);
+  --shadow-md:    0 4px 14px rgba(188,38,155,0.06), 0 2px 6px rgba(25,30,73,0.03);
+  --shadow-lg:    0 12px 32px rgba(25,30,73,0.08), 0 4px 12px rgba(25,30,73,0.04);
+  --shadow-brand: 0 4px 14px rgba(188,38,155,0.12);  /* Primary button shadow */
+}
+
+/* ---- 2. TAILWIND v4 THEME TOKENS -------------------------- */
+@theme inline {
+  /* --- Colour namespace --- */
+  /* Brand */
+  --color-brand-pink:     var(--gs-pink);
+  --color-brand-purple:   var(--gs-purple);
+  --color-brand-blue:     var(--gs-blue);
+
+  /* Background */
+  --color-bg-page:        var(--bg-page);
+  --color-bg-elevated:    var(--bg-elevated);
+  --color-bg-subtle:      var(--bg-subtle);
+  --color-bg-dark:        var(--bg-dark);
+
+  /* Text */
+  --color-text-primary:   var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted:     var(--text-muted);
+  --color-text-inverse:   var(--text-inverse);
+
+  /* UI */
+  --color-success:        var(--color-success);
+  --color-error:          var(--color-error);
+
+  /* --- Font families: exact approved fonts --- */
+  --font-display: var(--font-primary);
+  --font-body:    var(--font-primary);
+  --font-sans:    var(--font-primary);
+  --font-label:   var(--font-mono);
+
+  /* --- Typography scale — Matching Reference Exactly --- */
+  /* Display / Hero H1: Desktop 60–64px, Tablet 48–56px, Mobile 40px */
+  --text-display:      clamp(40px, 4.8vw, 64px);
+  --leading-display:   1.05;
+  --tracking-display: -0.02em;
+
+  /* H1: Desktop 60–64px, Tablet 48–56px, Mobile 40px */
+  --text-h1:           clamp(40px, 4.8vw, 64px);
+  --leading-h1:        1.05;
+  --tracking-h1:      -0.02em;
+
+  /* H2: Desktop ~48px, Tablet 40–44px, Mobile 36–40px */
+  --text-h2:           clamp(36px, 3.6vw, 48px);
+  --leading-h2:        1.08;
+  --tracking-h2:      -0.02em;
+
+  /* H3: Desktop ~32px, Tablet ~30px, Mobile ~28px */
+  --text-h3:           clamp(28px, 2.4vw, 32px);
+  --leading-h3:        1.1;
+  --tracking-h3:      -0.015em;
+
+  /* Large supporting text: 20px, line-height approximately 30px (1.5) */
+  --text-body-lg:      1.25rem;  /* 20px */
+  --leading-body-lg:   1.5;      /* 30px */
+
+  /* Body: 16–18px, line-height approximately 1.45–1.6 */
+  --text-body:         clamp(1rem, 1.2vw, 1.125rem);  /* 16–18px */
+  --leading-body:      1.55;
+
+  /* Small: 14px */
+  --text-sm:           0.875rem; /* 14px */
+  --leading-sm:        1.5;
+
+  /* Eyebrow / mono: 12–14px, uppercase, tt-commons-mono-md */
+  --text-eyebrow:      0.8125rem; /* 13px */
+  --leading-eyebrow:   1.4;
+  --tracking-eyebrow:  0.12em;
+
+  /* --- Spacing scale (supplement Tailwind defaults) --- */
+  --spacing-section-sm:  var(--spacing-16);  /* 64px */
+  --spacing-section-md:  var(--spacing-24);  /* 96px */
+  --spacing-section-lg:  var(--spacing-32);  /* 128px */
+
+  /* --- Radius --- */
+  --radius-sm:      var(--radius-sm);
+  --radius-md:      var(--radius-md);
+  --radius-lg:      var(--radius-lg);
+  --radius-product: var(--radius-product);
+
+  /* --- Shadows (via Tailwind shadow-* utilities) --- */
+  --shadow-sm:    var(--shadow-sm);
+  --shadow-md:    var(--shadow-md);
+  --shadow-lg:    var(--shadow-lg);
+  --shadow-brand: var(--shadow-brand);
+}
+
+/* ---- 3. BASE STYLES --------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  min-height: 100dvh;
+}
+
+/* Headings use the display font with editorial regular weight (400) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 400; /* Editorial weight: 400 matching reference! */
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+/* Body copy wraps nicely */
+p {
+  max-width: 650px;
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  line-height: var(--leading-body);
+}
+
+/* ---- 4. TYPOGRAPHY UTILITY CLASSES ----------------------- */
+.text-display {
+  font-family: var(--font-primary);
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 400;
+}
+
+.text-h1 {
+  font-family: var(--font-primary);
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
+  font-weight: 400;
+}
+
+.text-h2 {
+  font-family: var(--font-primary);
+  font-size: var(--text-h2);
+  line-height: var(--leading-h2);
+  letter-spacing: var(--tracking-h2);
+  font-weight: 400;
+}
+
+.text-h3 {
+  font-family: var(--font-primary);
+  font-size: var(--text-h3);
+  line-height: var(--leading-h3);
+  letter-spacing: var(--tracking-h3);
+  font-weight: 400;
+}
+
+.text-body-lg {
+  font-family: var(--font-primary);
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body-lg);
+  font-weight: 400;
+}
+
+.text-body {
+  font-family: var(--font-primary);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-weight: 400;
+}
+
+.text-sm {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+}
+
+.text-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  line-height: var(--leading-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
+  padding-left: var(--tracking-eyebrow); /* Optical centering fix */
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* Brand gradient text */
+.text-gradient {
+  background: var(--gs-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- 5. CONTAINER SYSTEM --------------------------------- */
+
+/* Standard max-width containers */
+.container-standard {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* Section vertical rhythm */
+.section-padding {
+  padding-block: clamp(4rem, 8vw, 8rem);
+}
+
+.section-padding-sm {
+  padding-block: clamp(3rem, 6vw, 6rem);
+}
+
+/* ---- 6. BUTTON SYSTEM ------------------------------------ */
+
+/* Base shared button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-size: 1rem;   /* ~16px */
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 9999px; /* Pill shape */
+  padding: 14px 28px;
+  min-height: 48px;        /* WCAG touch target + slightly taller */
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease,
+    border-color 200ms ease,
+    opacity 200ms ease;
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* 1. Primary — Solid Magenta */
+.btn-primary {
+  background-color: #BC269B;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  box-shadow: var(--shadow-brand);
+}
+
+.btn-primary:hover {
+  background-color: #A91F8B; /* Darker hover state based on #BC269B */
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(188, 38, 155, 0.20);
+}
+
+/* 2. Secondary — White background, magenta border */
+.btn-secondary {
+  background-color: #FFFFFF;
+  color: #BC269B;
+  border: 1.5px solid #BC269B;
+  border-radius: 9999px;
+  padding: 12.5px 26px; /* Offset the 1.5px border */
+}
+
+.btn-secondary:hover {
+  background-color: #FBF0F9; /* Very subtle pink tint hover */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(188, 38, 155, 0.10);
+}
+
+/* 3. Ghost / Outline button */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+}
+
+.btn-ghost:hover {
+  background-color: var(--bg-subtle);
+  border-color: rgba(25, 30, 73, 0.15);
+}
+
+/* 4. Brand gradient CTA — selective use */
+.btn-gradient {
+  background: var(--gs-gradient);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(188,38,155,0.15);
+  border: none;
+}
+
+.btn-gradient:hover {
+  box-shadow: 0 6px 20px rgba(188,38,155,0.25);
+  transform: translateY(-1px);
+}
+
+/* 5. Exact GlowSuite Hero Background Gradient */
+.hero-background-gradient {
+  position: absolute;
+  inset: 0 0 auto 0;
+  width: 100%;
+  height: 800px;
+
+  background: linear-gradient(
+    90deg,
+    #D5D4FB 0%,
+    #DCCAF8 12.5%,
+    #E5CAF2 25%,
+    #F0CCEB 37.5%,
+    #F9CEE5 50%,
+    #FCD2DF 62.5%,
+    #FCD7DA 75%,
+    #FCD7DA 87.5%,
+    #FDDED2 100%
+  );
+
+  -webkit-mask:
+    linear-gradient(
+      transparent,
+      #000 20%,
+      #000 70%,
+      transparent 800px
+    );
+
+  mask:
+    linear-gradient(
+      transparent,
+      #000 20%,
+      #000 70%,
+      transparent 800px
+    );
+
+  opacity: 0.7;
+
+  pointer-events: none;
+}
+
+/* Size modifiers */
+.btn-sm {
+  font-size: 0.9375rem;
+  padding: 10px 20px;
+  min-height: 40px;
+}
+
+.btn-lg {
+  font-size: 1.0625rem;
+  padding: 16px 32px;
+  min-height: 54px;
+}
+
+/* ---- 7. CARD SYSTEM --------------------------------------- */
+
+/* Base card */
+.card {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+/* Elevated card — lifts on hover */
+.card-elevated {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 300ms ease, transform 300ms ease;
+}
+
+.card-elevated:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+/* Product info card — slightly more structure */
+.card-product {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-product);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+/* Dark card */
+.card-dark {
+  background-color: var(--bg-dark);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  color: var(--text-inverse);
+}
+
+.card-dark p {
+  color: rgba(249,249,251,0.65);
+}
+
+/* Card icon area */
+.card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  background-color: var(--bg-subtle);
+}
+
+/* ---- 8. GRADIENT UTILITY ---------------------------------- */
+.bg-brand-gradient {
+  background: var(--gs-gradient);
+}
+
+.bg-brand-gradient-subtle {
+  background: var(--gs-gradient-subtle);
+}
+
+/* Subtle brand accent line (for eyebrows or separators) */
+.accent-line {
+  display: block;
+  width: 40px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--gs-gradient);
+  margin-bottom: 1rem;
+}
+
+/* ---- 9. FOCUS & ACCESSIBILITY ---------------------------- */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ---- 10. SELECTION ---------------------------------------- */
+::selection {
+  background-color: rgba(139, 63, 216, 0.18);
+  color: var(--text-primary);
+}
+
+/* ---- 11. HASH NAVIGATION SCROLL OFFSET ------------------- */
+/* Prevents the sticky header (68px) from obscuring scroll targets.
+   Using 80px = header height + comfortable 12px breathing room.  */
+html {
+  scroll-padding-top: 80px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
